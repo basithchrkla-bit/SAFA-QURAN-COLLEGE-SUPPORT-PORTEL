@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAFA QURAN COLLEGE SUPPORT PORTAL</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Malayalam",sans-serif;background:#f4f7f8;color:#17212b}
+header{background:#0b5d4b;color:white;padding:22px 18px;text-align:center}
+header h1{margin:0;font-size:22px} header p{margin:7px 0 0;opacity:.9}
+.container{max-width:1050px;margin:24px auto;padding:0 16px}
+.card{background:white;border-radius:16px;padding:20px;box-shadow:0 5px 20px #00000010;margin-bottom:18px}
+.login{max-width:430px;margin:35px auto}
+label{display:block;font-weight:bold;margin:12px 0 6px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #d7dfe2;border-radius:10px;font-size:15px}
+button{border:0;border-radius:10px;padding:12px 18px;background:#0b5d4b;color:#fff;font-weight:bold;cursor:pointer;margin-top:14px}
+button.secondary{background:#e9f1ef;color:#0b5d4b}
+.error{color:#c62828;margin-top:10px;display:none}
+.hidden{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.tile{padding:18px;border-radius:14px;background:#f0f7f5;border-left:4px solid #0b5d4b}
+.tile h3{margin:0 0 8px;font-size:16px}.tile p{margin:0;color:#52616b}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{background:#e7f5ef;color:#0b5d4b;padding:7px 10px;border-radius:20px;font-weight:bold}
+table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:11px;border-bottom:1px solid #eee;text-align:left}th{background:#f5f7f7}
+.small{font-size:13px;color:#68757c}
+</style>
+</head>
+<body>
+<header>
+  <h1>SAFA QURAN COLLEGE SUPPORT PORTAL</h1>
+  <p>രക്ഷിതാക്കൾക്കും അധ്യാപകർക്കുമുള്ള Support Portal</p>
+</header>
+
+<div class="container">
+
+<section id="login" class="card login">
+  <h2>Login / ലോഗിൻ</h2>
+  <p class="small">Demo version — പിന്നീട് യഥാർത്ഥ database & secure authentication ചേർക്കാം.</p>
+  <label>Login Type</label>
+  <select id="loginType">
+    <option value="parent">Parent / രക്ഷിതാവ്</option>
+    <option value="admin">Admin / Teacher</option>
+  </select>
+  <label>Student Number / Username</label>
+  <input id="username" placeholder="ഉദാ: 1001">
+  <label>Password</label>
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <div id="error" class="error">Login വിവരങ്ങൾ ശരിയല്ല.</div>
+  <p class="small">Demo Parent: 1001 / 1234 &nbsp; | &nbsp; Demo Admin: admin / admin123</p>
+</section>
+
+<section id="parent" class="hidden">
+  <div class="card">
+    <div class="topbar">
+      <div><h2>Parent Dashboard</h2><p class="small">രക്ഷിതൃ ഡാഷ്ബോർഡ്</p></div>
+      <span class="badge">Student: Shadi Burhan • 1001</span>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="tile"><h3>📅 Attendance</h3><p>ഈ മാസം: 94%</p><button class="secondary" onclick="show('attendance')">View</button></div>
+    <div class="tile"><h3>📖 Study Information</h3><p>Today's progress</p><button class="secondary" onclick="show('study')">View</button></div>
+    <div class="tile"><h3>📨 Leave Apply</h3><p>അവധി അപേക്ഷ</p><button class="secondary" onclick="show('leave')">Apply</button></div>
+    <div class="tile"><h3>📝 Result</h3><p>Latest examination</p><button class="secondary" onclick="show('result')">View</button></div>
+    <div class="tile"><h3>🔔 Notices</h3><p>3 new notices</p><button class="secondary" onclick="show('notices')">View</button></div>
+    <div class="tile"><h3>👤 Profile</h3><p>Student details</p><button class="secondary" onclick="show('profile')">View</button></div>
+  </div>
+  <div id="parentContent" class="card" style="margin-top:18px"></div>
+  <button onclick="logout()">Logout</button>
+</section>
+
+<section id="admin" class="hidden">
+  <div class="card">
+    <div class="topbar"><div><h2>Admin / Teacher Dashboard</h2><p class="small">Student management</p></div><span class="badge">Administrator</span></div>
+  </div>
+  <div class="grid">
+    <div class="tile"><h3>👨‍🎓 Students</h3><p>Manage students</p></div>
+    <div class="tile"><h3>📅 Attendance</h3><p>Mark attendance</p></div>
+    <div class="tile"><h3>📖 Study</h3><p>Update study progress</p></div>
+    <div class="tile"><h3>📨 Leave Requests</h3><p>Approve / Reject</p></div>
+    <div class="tile"><h3>📝 Results</h3><p>Enter examination marks</p></div>
+    <div class="tile"><h3>🔔 Notices</h3><p>Publish notices</p></div>
+  </div>
+  <div class="card">
+    <h3>Recent Leave Requests</h3>
+    <table><tr><th>Student</th><th>Date</th><th>Reason</th><th>Status</th></tr>
+    <tr><td>1001</td><td>12-09-2026</td><td>Family function</td><td>Pending</td></tr>
+    </table>
+  </div>
+  <button onclick="logout()">Logout</button>
+</section>
+
+</div>
+
+<script>
+function login(){
+  const type=document.getElementById('loginType').value;
+  const u=document.getElementById('username').value.trim();
+  const p=document.getElementById('password').value;
+  const ok=(type==='parent' && u==='1001' && p==='1234') || (type==='admin' && u==='admin' && p==='admin123');
+  document.getElementById('error').style.display=ok?'none':'block';
+  if(!ok)return;
+  document.getElementById('login').classList.add('hidden');
+  document.getElementById(type).classList.remove('hidden');
+}
+function logout(){location.reload()}
+function show(page){
+ const c=document.getElementById('parentContent');
+ const data={
+ attendance:'<h3>📅 Attendance / ഹാജർ</h3><p>September 2026: <b>94%</b></p><table><tr><th>Date</th><th>Status</th></tr><tr><td>12 Sep</td><td>Present</td></tr><tr><td>11 Sep</td><td>Present</td></tr><tr><td>10 Sep</td><td>Leave</td></tr></table>',
+ study:'<h3>📖 Study Information / പഠന വിവരം</h3><p><b>Today:</b> Hifz Revision — Juz 5</p><p><b>Teacher remark:</b> Good progress.</p>',
+ leave:'<h3>📨 Leave Apply / അവധി അപേക്ഷ</h3><label>Date</label><input type="date"><label>Reason / കാരണം</label><textarea rows="4" placeholder="അവധി ആവശ്യമുള്ള കാരണം"></textarea><button onclick="alert(\'Demo: Leave application submitted!\')">Submit Application</button>',
+ result:'<h3>📝 Result / പരീക്ഷാ ഫലം</h3><table><tr><th>Exam</th><th>Mark</th><th>Grade</th></tr><tr><td>Monthly Test</td><td>267 / 300</td><td>A</td></tr></table>',
+ notices:'<h3>🔔 Notices / അറിയിപ്പുകൾ</h3><p>• അടുത്ത പരീക്ഷയുടെ തീയതി ഉടൻ അറിയിക്കും.</p><p>• ഖത്മുൽ ഖുർആൻ മജ്‌ലിസ് — അറിയിപ്പ്.</p>',
+ profile:'<h3>👤 Student Profile / വിദ്യാർത്ഥി വിവരങ്ങൾ</h3><p><b>Name:</b> Shadi Burhan</p><p><b>Student No:</b> 1001</p><p><b>Class:</b> Hifz</p>'
+ };
+ c.innerHTML=data[page]||'';
+ c.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
