@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safa Hifzul Quran College - Result</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Arial,sans-serif;background:#f2f5f4;display:flex;justify-content:center;align-items:center;padding:20px}
+.card{width:100%;max-width:480px;background:#fff;border-radius:20px;padding:28px;box-shadow:0 8px 30px rgba(0,0,0,.10);text-align:center}
+h1{font-size:23px;margin:0;color:#17352d}
+h2{font-size:17px;margin:8px 0 4px;color:#555;font-weight:500}
+.sub{font-size:13px;color:#777;margin-bottom:25px}
+input{width:100%;padding:15px;border:1px solid #ccc;border-radius:10px;font-size:18px;text-align:center;outline:none}
+button{width:100%;margin-top:12px;padding:14px;border:0;border-radius:10px;background:#17352d;color:white;font-size:17px;cursor:pointer}
+button:hover{opacity:.9}
+.result{display:none;margin-top:22px;border:1px solid #ddd;border-radius:14px;padding:20px;text-align:left}
+.result h3{text-align:center;margin:0 0 18px;font-size:20px}
+.row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid #eee}
+.row:last-child{border-bottom:0}
+.label{color:#777}
+.value{font-weight:bold}
+.status{text-align:center;margin-top:15px;padding:10px;border-radius:8px;background:#eef6f2;font-weight:bold}
+.error{display:none;color:#b00020;margin-top:15px}
+.footer{font-size:11px;color:#888;margin-top:22px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>SAFA HIFZUL QURAN COLLEGE</h1>
+<h2>HALF YEARLY EXAMINATION</h2>
+<div class="sub">2025–2026 • RESULT PORTAL</div>
+
+<input id="roll" type="text" inputmode="numeric" maxlength="3" placeholder="Enter Roll Number">
+<button onclick="showResult()">View Result</button>
+
+<div id="error" class="error">Roll number not found. Please check and try again.</div>
+
+<div id="result" class="result">
+<h3>🎓 Examination Result</h3>
+<div class="row"><span class="label">Roll No.</span><span class="value" id="rno"></span></div>
+<div class="row"><span class="label">Student Name</span><span class="value" id="name"></span></div>
+<div class="row"><span class="label">Mark</span><span class="value" id="mark"></span></div>
+<div id="status" class="status"></div>
+</div>
+
+<div class="footer">Safa Hifzul Quran College — Official Result Portal</div>
+</div>
+
+<script>
+const students = [
+["120","Muhammed Raihan",91,"Distinction"],
+["121","Muhammed Hidash",63,"Passed"],
+["129","Muhammed Dakir",63,"Passed"],
+["130","Abdul Vahid",88,"Distinction"],
+["131","Muhammed Shifan",67,"Passed"],
+["132","Ahmed Qubaib",90,"Distinction"],
+["133","Muhammed T V",87,"Distinction"],
+["134","Muhammed Jafrin",86,"Distinction"],
+["135","Ahmed Zahi",82,"Passed"],
+["136","Muhammed A P",80,"Passed"],
+["137","Muhammed Ameen",51,"Passed"],
+["141","Muhammed Faizan",79,"Passed"],
+["142","Muhammed Ibnu Jalal",78,"Passed"],
+["143","Muhammed Razi",80,"Passed"],
+["144","Nabhan",70,"Passed"],
+["148","Akmal",80,"Passed"],
+["149","Abdul Hadi",84,"Passed"],
+["150","Ammar",85,"Distinction"],
+["151","Hasan",84,"Passed"],
+["152","Sheheen",83,"Passed"],
+["153","Shamveel",86,"Distinction"],
+["155","Safwan",81,"Passed"],
+["156","Thajmeel",84,"Passed"]
+];
+
+function showResult(){
+  const roll = document.getElementById("roll").value.trim();
+  const student = students.find(s => s[0] === roll);
+  const result = document.getElementById("result");
+  const error = document.getElementById("error");
+
+  if(!student){
+    result.style.display="none";
+    error.style.display="block";
+    return;
+  }
+
+  error.style.display="none";
+  result.style.display="block";
+  document.getElementById("rno").textContent=student[0];
+  document.getElementById("name").textContent=student[1];
+  document.getElementById("mark").textContent=student[2] + " / 100";
+  document.getElementById("status").textContent=student[3];
+}
+
+document.getElementById("roll").addEventListener("keydown", function(e){
+  if(e.key==="Enter") showResult();
+});
+</script>
+</body>
+</html>
